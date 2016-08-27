@@ -51,11 +51,15 @@ public class MobSpawnListener implements Listener{
 		//plugin.getLogger().info("CreatureSpawnEvent");
 		LivingEntity spawnedlivingentity = event.getEntity();
 		Entity spawnedentity = event.getEntity();
-		String MobName = "blank";
+		String MobName = null;
+		
+		if(plugin.UseMobNameAsSeed == true){
+			MobName = spawnedentity.getName();
+		}
 		//		EntityType spawnedentitytype = event.getEntityType();
 
 		if (spawnedlivingentity instanceof Monster){
-			if(Chance <= plugin.ChanceOfSpeaking) {
+			if(Chance <= plugin.ChanceOfSpeaking && plugin.ChanceOfSpeaking != 0) {
 				if(plugin.IsAIEnable == true && AIChance <= plugin.ChanceOfAISpeaking){
 					plugin.debug("mob will spawn with AI message");
 					MobName = aicore.GenerateSentence();
@@ -87,7 +91,11 @@ public class MobSpawnListener implements Listener{
 		int AIChance = randomchance.nextInt(100);
 		int StringLength = plugin.lenght_of_response;
 		Entity spawnedentity = event.getEntity();
-		String MobName = spawnedentity.getName();
+		String MobName = null;
+		
+		if(plugin.UseMobNameAsSeed == true){
+			MobName = spawnedentity.getName();
+		}
 		
 		
 //		String AttackedContextString = plugin.AttackContexts.get(randomattackcontextstring.nextInt(plugin.AttackContexts.size()));
@@ -96,7 +104,7 @@ public class MobSpawnListener implements Listener{
 		if (spawnedentity instanceof Monster){
 			plugin.debug("mob was attacked");
 			if(plugin.change_response_on_attack == true){
-				if(plugin.IsAIEnable == true && AIChance <= plugin.chance_of_ai_response_attacked){
+				if(plugin.IsAIEnable == true && AIChance <= plugin.chance_of_ai_response_attacked && plugin.chance_of_ai_response_attacked != 0){
 					plugin.debug("mob will spawn with AI message");
 //					if (plugin.enable_context == true){
 //						plugin.debug("using context for AI message");

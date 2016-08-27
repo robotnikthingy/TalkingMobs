@@ -7,3 +7,16 @@ commands:
   reloadnames:
     description: Reload the Talking Mobs plugin
     usage: /reloadnames
+    
+commands:
+  talkingmobs:
+    description: The main TalkingMobs Command
+    permission: talkingmobs.admin
+permissions:
+  talkingmobs.*:
+    description: Gives access to all TalkingMobs commands
+    children:
+      worldschematics.admin: true
+  talkingmobs.admin:
+    description: Allows you to use TalkingMobs Admin commands
+    default: op

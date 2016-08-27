@@ -12,7 +12,9 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
-
+import org.bukkit.entity.Player;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -28,10 +30,9 @@ public class TalkingMobs extends JavaPlugin{
     public boolean talk_only_when_attacked = getConfig().getBoolean("talk_only_when_attacked", false);
     public boolean change_response_on_attack = getConfig().getBoolean("change_response_on_attack", true);
     public boolean enable_context = getConfig().getBoolean("enable_context", true);
+    public boolean UseMobNameAsSeed = getConfig().getBoolean("UseMobNameAsSeed", false);
     public int chance_of_using_context = getConfig().getInt("chance_of_using_context", 90);
     public int chance_of_ai_response_attacked = getConfig().getInt("chance_of_ai_response_attacked", 90);
-    public ArrayList<String> AttackContexts = (ArrayList<String>) getConfig().getStringList("attacked");
-    public ArrayList<String> DeathContexts = (ArrayList<String>) getConfig().getStringList("death");
     
     
     private FileConfiguration config;    
@@ -144,5 +145,32 @@ public class TalkingMobs extends JavaPlugin{
     	if(debug == true){
     		getLogger().info(message);
     	}
+    }
+    
+    @Override
+    public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
+
+        if (cmd.getName().equalsIgnoreCase("talkingmobs")) {
+        	if (args[0].equalsIgnoreCase("reload")) {
+        		getLogger().info("Reloading plugin");
+        		
+        		//reload all config options
+        	    ChanceOfSpeaking = getConfig().getInt("chance_of_text");
+        	    ChanceOfAISpeaking = getConfig().getInt("chance_of_ai_response");
+        	    IsAIEnable = getConfig().getBoolean("enable_ai_response", true);
+        	    lenght_of_response = getConfig().getInt("lenght_of_response", 30);
+        	    talk_only_when_attacked = getConfig().getBoolean("talk_only_when_attacked", false);
+        	    change_response_on_attack = getConfig().getBoolean("change_response_on_attack", true);
+        	    enable_context = getConfig().getBoolean("enable_context", true);
+        	    chance_of_using_context = getConfig().getInt("chance_of_using_context", 90);
+        	    chance_of_ai_response_attacked = getConfig().getInt("chance_of_ai_response_attacked", 90);
+
+        	}
+        }
+    	
+    	
+		return IsAIEnable;
+    	
+    	
     }
 }

@@ -1,17 +1,20 @@
 #chance of a mob spawning saying something
-chance_of_text: 75
+chance_of_text: 5
 #enables AI to generate responses. If set to false, mobs will only say stuff from the texts.txt file
 enable_ai_response: true
 #chance that the AI will generate a response instead of pulling one from the text file
-chance_of_ai_response: 75
+chance_of_ai_response: 100
 #whether the mob will say something new when attacked
 change_response_on_attack: true
 #chance that the AI will generate a response instead of pulling one from the text file when attacked
-chance_of_ai_response_attacked: 90
+chance_of_ai_response_attacked: 100
 #whether mobs will only talk when attacked
 talk_only_when_attacked: false
 #the maximum length of what a mob will say, in letters. Useful for preventing obnoxiously long names
 #set to -1 if you don't care about how long it is
 lenght_of_response: 60
+#Uses the name of the mob to generate sentences. Makes sentences more relevant, but may make AI only
+#say their name if the AI has not learned enough.
+UseMobNameAsSeed: false
 #prints debug info to the console
 debug: false

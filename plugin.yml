@@ -1,0 +1,9 @@
+main: robotnikman.TalkingMobs
+name: TalkingMobs
+version: ${project.version}
+description: Makes mobs randomly spawn talking
+depend: [AI-Core]
+commands:
+  reloadnames:
+    description: Reload the Talking Mobs plugin
+    usage: /reloadnames
